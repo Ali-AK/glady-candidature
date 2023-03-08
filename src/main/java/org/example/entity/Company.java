@@ -51,7 +51,7 @@ public class Company
         return amount > 0 && balance - amount > 0;
     }
 
-    public boolean deductFromBalance(double amount) throws Exception
+    public boolean deductFromBalance(double amount)
     {
         if(validAmount(amount))
         {
