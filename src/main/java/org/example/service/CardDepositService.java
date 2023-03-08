@@ -3,6 +3,7 @@ import org.example.entity.CardDeposit;
 
 public class CardDepositService implements ICardDepositService
 {
+    @Override
     public void submitCardDeposit(CardDeposit cardDeposit) throws Exception
     {
         // Checking if the company has enough balance
