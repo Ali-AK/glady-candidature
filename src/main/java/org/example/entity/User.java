@@ -2,20 +2,20 @@ package org.example.entity;
 
 public class User
 {
-    private long id;
+    private int id;
     private String firstName;
     private String lastName;
 
     public User() {}
 
-    public User(long id, String firstName, String lastName)
+    public User(int id, String firstName, String lastName)
     {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public long getId()
+    public int getId()
     {
         return id;
     }
@@ -30,7 +30,7 @@ public class User
         return lastName;
     }
 
-    public void setId(long id)
+    public void setId(int id)
     {
         this.id = id;
     }
@@ -43,5 +43,11 @@ public class User
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "User #" + id +  ": " + firstName + " " + lastName + "\n------------------------\n";
     }
 }
