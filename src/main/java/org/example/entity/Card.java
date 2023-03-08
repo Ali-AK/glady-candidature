@@ -5,26 +5,28 @@ import java.util.Date;
 
 public class Card
 {
-    private String id;
+    private int id;
     private double balance;
-    private String issuingCompany;
     private Date createdAt;
-    private Date expireyDate;
+    private Date expiryDate;
+    // A card should be related to one and only one user
     private User user;
+    // A card should be related to one and only one company
+    private Company company;
 
     public Card() {}
 
-    public Card(String id, double balance, String issuingCompany, Date createdAt, Date expireyDate, User user)
+    public Card(int id, double balance, Company company, Date createdAt, Date expiryDate, User user)
     {
         this.id = id;
         this.balance = balance;
-        this.issuingCompany = issuingCompany;
+        this.company = company;
         this.createdAt = createdAt;
-        this.expireyDate = expireyDate;
+        this.expiryDate = expiryDate;
         this.user = user;
     }
 
-    public String getId()
+    public int getId()
     {
         return id;
     }
@@ -34,9 +36,9 @@ public class Card
         return balance;
     }
 
-    public String getIssuingCompany()
+    public Company getCompany()
     {
-        return issuingCompany;
+        return company;
     }
 
     public Date getCreatedAt()
@@ -44,9 +46,9 @@ public class Card
         return createdAt;
     }
 
-    public Date getExpireyDate()
+    public Date getExpiryDate()
     {
-        return expireyDate;
+        return expiryDate;
     }
 
     public User getUser()
@@ -54,7 +56,7 @@ public class Card
         return user;
     }
 
-    public void setId(String id)
+    public void setId(int id)
     {
         this.id = id;
     }
@@ -64,9 +66,9 @@ public class Card
         this.balance = balance;
     }
 
-    public void setIssuingCompany(String issuingCompany)
+    public void setCompany(Company company)
     {
-        this.issuingCompany = issuingCompany;
+        this.company = company;
     }
 
     public void setCreatedAt(Date createdAt)
@@ -74,13 +76,39 @@ public class Card
         this.createdAt = createdAt;
     }
 
-    public void setExpireyDate(Date expireyDate)
+    public void setExpiryDate(Date expiryDate)
     {
-        this.expireyDate = expireyDate;
+        this.expiryDate = expiryDate;
     }
 
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    public boolean isExpired()
+    {
+        return expiryDate.before(new Date());
+    }
+
+    public void addToBalance(double amount) throws Exception
+    {
+        if(amount > 0 && !isExpired())
+            this.balance += amount;
+
+        else
+            throw new Exception("The card is expired!");
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Card #" + id +  ": \n" +
+                "-Balance: " + balance + " $\n" +
+                "-Created At: " + createdAt.toString() + "\n" +
+                "-Expires At: " + expiryDate.toString() + "\n" +
+                "-Company: \n" +
+                "--" + company.getName() + "\n" +
+                "-User: " + user.toString() + "\n";
     }
 }
