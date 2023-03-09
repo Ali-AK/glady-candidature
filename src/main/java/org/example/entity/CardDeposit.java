@@ -9,6 +9,7 @@ public abstract class CardDeposit
     protected Date receivedDate;
     // Each CardDeposit must belong to a certain card
     protected Card card;
+    protected Date expiryDate;
 
     public CardDeposit() {}
 
@@ -18,6 +19,17 @@ public abstract class CardDeposit
         this.amount = amount;
         this.receivedDate = receivedDate;
         this.card = card;
+    }
+
+
+    public Date getExpiryDate()
+    {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate)
+    {
+        this.expiryDate = expiryDate;
     }
 
     public double getAmount()

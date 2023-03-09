@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class GiftCardDeposit extends CardDeposit
 {
-    private Date expiryDate;
+
     public GiftCardDeposit(int id, double amount, Date receivedDate, Card card)
     {
         super(id, amount, receivedDate, card);
@@ -22,6 +22,7 @@ public class GiftCardDeposit extends CardDeposit
         Date currentDate = new Date();
         return currentDate.after(expiryDate);
     }
+
 
     @Override
     public String toString()

@@ -5,7 +5,6 @@ import java.util.Date;
 
 public class MealCardDeposit extends CardDeposit
 {
-    private Date expiryDate;
     public MealCardDeposit(int id, double amount, Date receivedDate, Card card)
     {
         super(id, amount, receivedDate, card);
@@ -22,7 +21,7 @@ public class MealCardDeposit extends CardDeposit
         Date endOfFebThisYear = expiryCal.getTime();
         expiryCal.set(Calendar.YEAR, currentYear + 1);
         Date endOfFebNextYear = expiryCal.getTime();
-        this.expiryDate = new Date().before(endOfFebThisYear) ? endOfFebThisYear : endOfFebNextYear;
+        this.expiryDate = receivedDate.before(endOfFebThisYear) ? endOfFebThisYear : endOfFebNextYear;
     }
 
     @Override
@@ -31,6 +30,8 @@ public class MealCardDeposit extends CardDeposit
         Date currentDate = new Date();
         return currentDate.after(expiryDate);
     }
+
+
 
     @Override
     public String toString()
